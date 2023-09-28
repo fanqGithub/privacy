@@ -1,0 +1,110 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.dingdang.plugin",
+    "module": "booster-me-plugin",
+    "version": "1.0.00",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "booster-me-plugin-1.0.00.jar",
+          "url": "booster-me-plugin-1.0.00.jar",
+          "size": 10502,
+          "sha512": "0f19230ac95afd61164a0a81478eb88136b90336771d904934bfb4ddf31078d4384638c84ce9ce9d4a80bdbf87daf18fd60fb53758967688cd19617be1dbf37c",
+          "sha256": "877fbd595ee3c8dd55f8c536e6070effe50eb5ededfc3bd9e5a373f18bcdbbb0",
+          "sha1": "b546af1a060fc4b57ce08a66827f306e33d7a12b",
+          "md5": "6e9b49f1dec4acf229dc0dfbaafce569"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.1.3"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm",
+          "version": {
+            "requires": "9.1"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-commons",
+          "version": {
+            "requires": "9.1"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-util",
+          "version": {
+            "requires": "9.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "booster-me-plugin-1.0.00.jar",
+          "url": "booster-me-plugin-1.0.00.jar",
+          "size": 10502,
+          "sha512": "0f19230ac95afd61164a0a81478eb88136b90336771d904934bfb4ddf31078d4384638c84ce9ce9d4a80bdbf87daf18fd60fb53758967688cd19617be1dbf37c",
+          "sha256": "877fbd595ee3c8dd55f8c536e6070effe50eb5ededfc3bd9e5a373f18bcdbbb0",
+          "sha1": "b546af1a060fc4b57ce08a66827f306e33d7a12b",
+          "md5": "6e9b49f1dec4acf229dc0dfbaafce569"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'kotlin'
+    id 'kotlin-kapt'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+def booster_version = '4.0.0'
+
+dependencies {
+    compileOnly localGroovy()
+    compileOnly gradleApi()
+    //ASM相关依赖
+    implementation 'org.ow2.asm:asm:9.3'
+    implementation 'org.ow2.asm:asm-commons:9.3'
+    implementation 'com.android.tools.build:gradle:4.0.2'
+
+    kapt "com.google.auto.service:auto-service:1.0.1"
+    api "com.didiglobal.booster:booster-api:$booster_version"
+    api "com.didiglobal.booster:booster-transform-asm:$booster_version"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+def GROUP = "com.gzik.plugin"
+def ARTIFACTID ="privacy"
+def VERSION ="1.0.0"
+def LOCAL_DIR = "../privacy_plugin_repo"
+
+gradlePlugin {
+    plugins {
+        privacy {
+            id = "gzik-privacy-plugin"
+            implementationClass = "com.gzik.privacyplugin.PrivacyPlugin"
+        }
+    }
+}
+
+publishing {
+    //配置Plugin GAV
+    publications {
+        maven(MavenPublication) {
+            groupId = GROUP
+            artifactId = ARTIFACTID
+            version = VERSION
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url uri(LOCAL_DIR)
+        }
+    }
+}

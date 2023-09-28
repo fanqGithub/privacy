@@ -1,0 +1,4 @@
+com/gzik/privacy/core/BuildConfig.java
+ com.gzik.privacy.core.BuildConfig
+com/gzik/privacy/annotation/PrivacyMethodReplace.java
+ com.gzik.privacy.annotation.PrivacyMethodReplace

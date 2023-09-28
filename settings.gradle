@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven { url "$rootDir/localRepository/snapshot" }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "$rootDir/localRepository/snapshot" }
+    }
+}
+rootProject.name = "ASMDemo"
+include ':app'
+include ':booster-core'
+include ':network'
+include ':privacy-plugin'
+include ':privacy-core'

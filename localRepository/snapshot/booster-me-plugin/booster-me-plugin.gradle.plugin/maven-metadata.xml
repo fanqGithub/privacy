@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>booster-me-plugin</groupId>
+  <artifactId>booster-me-plugin.gradle.plugin</artifactId>
+  <versioning>
+    <latest>unspecified</latest>
+    <release>unspecified</release>
+    <versions>
+      <version>unspecified</version>
+    </versions>
+    <lastUpdated>20230104022058</lastUpdated>
+  </versioning>
+</metadata>
