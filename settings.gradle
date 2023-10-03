@@ -4,6 +4,7 @@ pluginManagement {
         google()
         mavenCentral()
         maven { url "$rootDir/localRepository/snapshot" }
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
@@ -12,9 +13,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "$rootDir/localRepository/snapshot" }
+        maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "ASMDemo"
+rootProject.name = "Privacy"
 include ':app'
 include ':booster-core'
 include ':network'
