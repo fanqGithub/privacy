@@ -29,7 +29,7 @@ java {
 
 def GROUP = "com.gzik.plugin"
 def ARTIFACTID ="privacy"
-def VERSION ="1.2.2"
+def VERSION ="1.2.3"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 gradlePlugin {
