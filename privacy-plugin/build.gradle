@@ -27,9 +27,9 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-def GROUP = "com.gzik.plugin"
+def GROUP = "com.github.fanqGithub"
 def ARTIFACTID ="privacy"
-def VERSION ="1.0.0"
+def VERSION ="1.1.0"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 gradlePlugin {
