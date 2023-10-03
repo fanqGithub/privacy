@@ -3,7 +3,6 @@ buildscript {
     apply from: "versions.gradle"
 
     dependencies {
-        classpath "com.dingdang.plugin:booster-me-plugin:1.0.00"
     }
 }
 plugins {

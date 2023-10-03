@@ -1,7 +1,7 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' // Kotlin
     id 'java-gradle-plugin' // Java Gradle Plugin，用于简化插件的开发。如下面的gradlePlugin块，就是简化了以前的resources里面去声明ID和全路径类。
-    id 'maven-publish'//用于发布到maven
+//    id 'maven-publish'//用于发布到maven
 }
 
 def GROUP_ID = 'com.github.fanqGithub' //定义group
@@ -30,23 +30,23 @@ gradlePlugin {
 }
 
 
-publishing {
-    // 定义发布什么
-    publications {
-        //随便写的名字：publishBoosterMe
-        publishBoosterMe(MavenPublication) {
-            from components.java //使用默认的配置生成jar包,要把源码jar包上传
-            groupId = GROUP_ID
-            artifactId = ARTIFACT_ID
-            version = VERSION_NAME //这三部分组成了：com.dingdang.plugin:booster-me-plugin:1.0.00
-        }
-    }
-    repositories {
-        maven {
-            name='mylocal'
-            url=uri(LOCAL_DIR)
-        }
-    }
-}
+//publishing {
+//    // 定义发布什么
+//    publications {
+//        //随便写的名字：publishBoosterMe
+//        publishBoosterMe(MavenPublication) {
+//            from components.java //使用默认的配置生成jar包,要把源码jar包上传
+//            groupId = GROUP_ID
+//            artifactId = ARTIFACT_ID
+//            version = VERSION_NAME //这三部分组成了：com.dingdang.plugin:booster-me-plugin:1.0.00
+//        }
+//    }
+//    repositories {
+//        maven {
+//            name='mylocal'
+//            url=uri(LOCAL_DIR)
+//        }
+//    }
+//}
 
 
