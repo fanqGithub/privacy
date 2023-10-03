@@ -6,7 +6,7 @@ plugins {
 
 def GROUP = "com.gzik.plugin"
 def ARTIFACTID ="privacy-core"
-def VERSION ="1.2.4"
+def VERSION ="1.2.5"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 java {
