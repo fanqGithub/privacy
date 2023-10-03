@@ -29,7 +29,7 @@ java {
 
 def GROUP = "com.github.fanqGithub"
 def ARTIFACTID ="privacy"
-def VERSION ="1.1.0"
+def VERSION ="1.2.1"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 gradlePlugin {
