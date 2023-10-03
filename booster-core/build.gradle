@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'//用于发布到maven
 }
 
-def GROUP_ID = 'com.dingdang.plugin' //定义group
+def GROUP_ID = 'com.github.fanqGithub' //定义group
 def ARTIFACT_ID = 'booster-me-plugin'
 def VERSION_NAME = '1.0.00'
 //以上这三部分组成了：com.dingdang.plugin:booster-me-plugin:1.0.00
