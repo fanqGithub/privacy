@@ -3,6 +3,8 @@ buildscript {
     apply from: "versions.gradle"
 
     dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath "com.github.fanqGithub:privacy:v1.2.5"
     }
 }
 plugins {

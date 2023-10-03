@@ -1,39 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
+    id 'com.github.dcendents.android-maven'
 }
 
-def GROUP = "com.gzik.plugin"
-def ARTIFACTID ="privacy-core"
-def VERSION ="1.2.5"
-def LOCAL_DIR = "../privacy_plugin_repo"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
+group = 'com.github.fanqGithub'
 
 dependencies {
     implementation 'org.ow2.asm:asm:9.3'
-}
-
-afterEvaluate {
-    publishing {
-        //配置Plugin GAV
-        publications {
-            release(MavenPublication) {
-                groupId = GROUP
-                artifactId = ARTIFACTID
-                version = VERSION
-
-                from components.release
-            }
-        }
-        repositories {
-            maven {
-                url uri(LOCAL_DIR)
-            }
-        }
-    }
 }
