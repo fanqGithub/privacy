@@ -6,7 +6,7 @@ plugins {
 
 def GROUP = "com.gzik.plugin"
 def ARTIFACTID ="privacy-core"
-def VERSION ="1.2.3"
+def VERSION ="1.2.4"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 java {
@@ -18,20 +18,22 @@ dependencies {
     implementation 'org.ow2.asm:asm:9.3'
 }
 
-publishing {
-    //配置Plugin GAV
-    publications {
-        maven(MavenPublication) {
-            groupId = GROUP
-            artifactId = ARTIFACTID
-            version = VERSION
+afterEvaluate {
+    publishing {
+        //配置Plugin GAV
+        publications {
+            release(MavenPublication) {
+                groupId = GROUP
+                artifactId = ARTIFACTID
+                version = VERSION
 
-            from components.java
+                from components.release
+            }
         }
-    }
-    repositories {
-        maven {
-            url uri(LOCAL_DIR)
+        repositories {
+            maven {
+                url uri(LOCAL_DIR)
+            }
         }
     }
 }
