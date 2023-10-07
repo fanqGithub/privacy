@@ -19,6 +19,5 @@ dependencyResolutionManagement {
 rootProject.name = "Privacy"
 include ':app'
 include ':booster-core'
-include ':network'
 include ':privacy-plugin'
 include ':privacy-core-sdk'
