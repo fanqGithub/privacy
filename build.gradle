@@ -3,7 +3,7 @@ buildscript {
     apply from: "versions.gradle"
 
     dependencies {
-        classpath 'com.github.fanqGithub.privacy:privacy-plugin:v1.2.7'
+//        classpath 'com.github.fanqGithub.privacy:privacy-plugin:v1.2.7'
     }
 }
 plugins {
