@@ -16,7 +16,7 @@ class CollectReplacePrivacyTransformer : AbsClassTransformer() {
     private lateinit var logger: PrintWriter
 
     companion object {
-        const val AsmFieldDesc = "Lcom/gzik/privacy/annotation/PrivacyMethodReplace;"
+        const val AsmFieldDesc = "Lcom/gzik/privacy/core/annotation/PrivacyMethodReplace;"
         var asmConfigs = mutableListOf<AsmItem>()
         var asmConfigsMap = HashMap<String, String>()
     }
