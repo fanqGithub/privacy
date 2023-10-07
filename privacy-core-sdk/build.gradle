@@ -42,7 +42,7 @@ def LOCAL_DIR = "../privacy_plugin_repo"
 
 dependencies {
     implementation 'org.ow2.asm:asm:9.3'
-    implementation 'androidx.annotation:annotation-jvm:1.7.0'
+    compileOnly 'androidx.annotation:annotation-jvm:1.7.0'
 }
 
 afterEvaluate {

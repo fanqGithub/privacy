@@ -68,9 +68,9 @@ open class BaseAsmTransformer : Transformer {
             }
         }
 
-        val w1 = this.durations.keys.map {
+        val w1 = this.durations.keys.maxOfOrNull {
             it.javaClass.name.length
-        }.maxOrNull() ?: 20
+        } ?: 20
         this.durations.forEach { (transformer, ns) ->
             println("${transformer.javaClass.name.padEnd(w1 + 1)}: ${ns / 1000000} ms")
         }
