@@ -11,10 +11,10 @@ task generateSourcesJar(type: Jar){
 
 android {
     namespace 'com.gzik.privacy.core'
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
-        minSdk 24
+        minSdk 22
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,7 +37,7 @@ android {
 
 def GROUP = "com.gzik.plugin"
 def ARTIFACTID ="privacy-core"
-def VERSION ="1.2.7"
+def VERSION ="1.2.8"
 def LOCAL_DIR = "../privacy_plugin_repo"
 
 dependencies {
