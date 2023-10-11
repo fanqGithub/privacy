@@ -1,6 +1,7 @@
 package com.gzik.privacyplugin.asm
 
 import groovyjarjarasm.asm.Opcodes
+import org.objectweb.asm.tree.AnnotationNode
 
 /**
  * ASM操作
@@ -38,6 +39,7 @@ class AsmItem(
                 oriMethod = value as String?
             }
         }
+
         if (oriMethod == null) {
             oriMethod = targetMethod
         }
@@ -73,3 +75,14 @@ class AsmItem(
 
 
 }
+
+fun <R> AnnotationNode.getKeyValue(name: String = "value"): R? =
+    values?.withIndex()?.iterator()?.let {
+        while (it.hasNext()) {
+            val i = it.next()
+            if (i.index % 2 == 0 && i.value == name) {
+                return@let it.next().value as R
+            }
+        }
+        null
+    }

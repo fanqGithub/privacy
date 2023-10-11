@@ -21,6 +21,7 @@ import android.util.Log
 import androidx.annotation.Keep
 import com.gzik.privacy.core.annotation.AsmMethodOpcodes
 import com.gzik.privacy.core.annotation.PrivacyMethodReplace
+import java.net.NetworkInterface
 import java.util.*
 
 /**
@@ -252,8 +253,11 @@ object PrivacyManager {
      * 获取SIM服务商信息
      */
     @JvmStatic
-    @PrivacyMethodReplace(oriClass = TelephonyManager::class, oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL)
-    fun getNetworkOperator(manager: TelephonyManager):String?{
+    @PrivacyMethodReplace(
+        oriClass = TelephonyManager::class,
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getNetworkOperator(manager: TelephonyManager): String? {
         val key = "getNetworkOperator"
         val cache = getCache<String>(key)
         if (cache != null) {
@@ -262,7 +266,7 @@ object PrivacyManager {
         if (!checkAgreePrivacy(key)) {
             return ""
         }
-        val getNetworkOperator=manager.networkOperator
+        val getNetworkOperator = manager.networkOperator
         return putCache(key, getNetworkOperator)
     }
 
@@ -270,8 +274,11 @@ object PrivacyManager {
      * 获取MEID
      */
     @JvmStatic
-    @PrivacyMethodReplace(oriClass = TelephonyManager::class, oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL)
-    fun getMeid(manager: TelephonyManager):String?{
+    @PrivacyMethodReplace(
+        oriClass = TelephonyManager::class,
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getMeid(manager: TelephonyManager): String? {
         val key = "getMeid"
         val cache = getCache<String>(key)
         if (cache != null) {
@@ -280,7 +287,7 @@ object PrivacyManager {
         if (!checkAgreePrivacy(key)) {
             return ""
         }
-        val meid=manager.meid
+        val meid = manager.meid
         return putCache(key, meid)
     }
 
@@ -347,6 +354,19 @@ object PrivacyManager {
     @JvmStatic
     @PrivacyMethodReplace(
         oriClass = Settings.System::class,
+        oriMethod = "getString",
+        oriAccess = AsmMethodOpcodes.INVOKESTATIC
+    )
+    fun getSysString(resolver: ContentResolver, name: String): String? {
+        return getString(resolver, name)
+    }
+
+    /**
+     * 读取Secure
+     */
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = Settings.Secure::class,
         oriAccess = AsmMethodOpcodes.INVOKESTATIC
     )
     fun getString(resolver: ContentResolver, name: String): String? {
@@ -360,31 +380,32 @@ object PrivacyManager {
             if (!checkAgreePrivacy(key)) {
                 return ""
             }
-            val value = Settings.System.getString(resolver, name)
+            val value = Settings.Secure.getString(resolver, name)
             return putCache(key, value)
         }
         return Settings.System.getString(resolver, name)
     }
 
     /**
-     * 读取AndroidId
+     * 获取MAC
      */
     @JvmStatic
     @PrivacyMethodReplace(
-        oriClass = Settings.Secure::class,
-        oriMethod = "getString",
-        oriAccess = AsmMethodOpcodes.INVOKESTATIC
+        oriClass = NetworkInterface::class,
+        oriMethod = "getHardwareAddress",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
     )
-    fun getSecureString(resolver: ContentResolver, name: String): String? {
-        val key = "SecureString_$name"
-        val cache = getCache<String>(key)
+    fun getHardwareAddress(manager: NetworkInterface): ByteArray? {
+        var key = "NetworkInterface-getHardwareAddress"
+        val cache = getCache<ByteArray>(key)
         if (cache != null) {
             return cache
         }
         if (!checkAgreePrivacy(key)) {
-            return ""
+            logD("NetworkInterface-getHardwareAddress not agree privacy")
+            return ByteArray(1)
         }
-        val value = Settings.Secure.getString(resolver, name)
+        val value = manager.hardwareAddress.toString().toByteArray()
         return putCache(key, value)
     }
 
