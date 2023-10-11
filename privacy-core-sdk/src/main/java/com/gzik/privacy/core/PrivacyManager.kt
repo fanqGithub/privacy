@@ -22,7 +22,6 @@ import androidx.annotation.Keep
 import com.gzik.privacy.core.annotation.AsmMethodOpcodes
 import com.gzik.privacy.core.annotation.PrivacyMethodReplace
 import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * @author fanqi@inke.com
@@ -365,6 +364,28 @@ object PrivacyManager {
             return putCache(key, value)
         }
         return Settings.System.getString(resolver, name)
+    }
+
+    /**
+     * 读取AndroidId
+     */
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = Settings.Secure::class,
+        oriMethod = "getString",
+        oriAccess = AsmMethodOpcodes.INVOKESTATIC
+    )
+    fun getSecureString(resolver: ContentResolver, name: String): String? {
+        val key = "SecureString_$name"
+        val cache = getCache<String>(key)
+        if (cache != null) {
+            return cache
+        }
+        if (!checkAgreePrivacy(key)) {
+            return ""
+        }
+        val value = Settings.Secure.getString(resolver, name)
+        return putCache(key, value)
     }
 
     /**
