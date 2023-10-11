@@ -250,6 +250,42 @@ object PrivacyManager {
     }
 
     /**
+     * 获取SIM服务商信息
+     */
+    @JvmStatic
+    @PrivacyMethodReplace(oriClass = TelephonyManager::class, oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL)
+    fun getNetworkOperator(manager: TelephonyManager):String?{
+        val key = "getNetworkOperator"
+        val cache = getCache<String>(key)
+        if (cache != null) {
+            return cache
+        }
+        if (!checkAgreePrivacy(key)) {
+            return ""
+        }
+        val getNetworkOperator=manager.networkOperator
+        return putCache(key, getNetworkOperator)
+    }
+
+    /**
+     * 获取MEID
+     */
+    @JvmStatic
+    @PrivacyMethodReplace(oriClass = TelephonyManager::class, oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL)
+    fun getMeid(manager: TelephonyManager):String?{
+        val key = "getMeid"
+        val cache = getCache<String>(key)
+        if (cache != null) {
+            return cache
+        }
+        if (!checkAgreePrivacy(key)) {
+            return ""
+        }
+        val meid=manager.meid
+        return putCache(key, meid)
+    }
+
+    /**
      * 读取WIFI的SSID
      */
     @JvmStatic
