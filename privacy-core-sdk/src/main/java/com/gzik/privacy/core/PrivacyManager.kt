@@ -565,9 +565,9 @@ object PrivacyManager {
         flags: Int
     ): PackageInfo? {
         if (!checkAgreePrivacy("getPackageInfo")) {
+            logD("安装包-getPackageInfo-${versionedPackage.packageName}")
             return null
         }
-        logD("安装包-getPackageInfo-${versionedPackage.packageName}")
         return manager.getPackageInfo(versionedPackage, flags)
     }
 
@@ -583,9 +583,9 @@ object PrivacyManager {
         flags: Int
     ): PackageInfo? {
         if (!checkAgreePrivacy("getPackageInfo")) {
+            logD("安装包-getPackageInfo-$packageName")
             return null
         }
-        logD("安装包-getPackageInfo-$packageName")
         return manager.getPackageInfo(packageName, flags)
     }
 
@@ -611,8 +611,8 @@ object PrivacyManager {
         oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
     )
     fun getInstalledPackages(manager: PackageManager, flags: Int): List<PackageInfo> {
-        logD("安装包-getInstalledPackages")
         if (!checkAgreePrivacy("getInstalledPackages")) {
+            logD("安装包-getInstalledPackages")
             return emptyList()
         }
         return manager.getInstalledPackages(flags)
@@ -639,8 +639,8 @@ object PrivacyManager {
         oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
     )
     fun getInstalledApplications(manager: PackageManager, flags: Int): List<ApplicationInfo> {
-        logD("安装包-getInstalledApplications")
         if (!checkAgreePrivacy("getInstalledApplications")) {
+            logD("安装包-getInstalledApplications")
             return emptyList()
         }
         return manager.getInstalledApplications(flags)
