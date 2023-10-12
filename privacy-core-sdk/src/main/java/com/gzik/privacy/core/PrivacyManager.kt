@@ -4,6 +4,10 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.ContentResolver
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.content.pm.VersionedPackage
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.location.Location
@@ -14,11 +18,13 @@ import android.net.wifi.ScanResult
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
+import android.os.Build
 import android.provider.Settings
 import android.telephony.CellInfo
 import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.annotation.Keep
+import androidx.annotation.RequiresApi
 import com.gzik.privacy.core.annotation.AsmMethodOpcodes
 import com.gzik.privacy.core.annotation.PrivacyMethodReplace
 import java.net.NetworkInterface
@@ -468,7 +474,6 @@ object PrivacyManager {
 
     }
 
-
     /**
      * 读取DHCP信息
      */
@@ -544,6 +549,102 @@ object PrivacyManager {
         manager.requestLocationUpdates(provider, minTime, minDistance, listener)
     }
 
+    /**
+     * 获取包相关
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getPackageInfo",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getPackageInfo(
+        manager: PackageManager,
+        versionedPackage: VersionedPackage,
+        flags: Int
+    ): PackageInfo? {
+        if (!checkAgreePrivacy("getPackageInfo")) {
+            return null
+        }
+        logD("安装包-getPackageInfo-${versionedPackage.packageName}")
+        return manager.getPackageInfo(versionedPackage, flags)
+    }
+
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getPackageInfo",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getPackageInfo(
+        manager: PackageManager,
+        packageName: String,
+        flags: Int
+    ): PackageInfo? {
+        if (!checkAgreePrivacy("getPackageInfo")) {
+            return null
+        }
+        logD("安装包-getPackageInfo-$packageName")
+        return manager.getPackageInfo(packageName, flags)
+    }
+
+
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getInstalledPackagesAsUser",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getInstalledPackagesAsUser(
+        manager: PackageManager,
+        flags: Int,
+        userId: Int
+    ): List<PackageInfo> {
+        return getInstalledPackages(manager, flags);
+    }
+
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getInstalledPackages",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getInstalledPackages(manager: PackageManager, flags: Int): List<PackageInfo> {
+        logD("安装包-getInstalledPackages")
+        if (!checkAgreePrivacy("getInstalledPackages")) {
+            return emptyList()
+        }
+        return manager.getInstalledPackages(flags)
+    }
+
+
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getInstalledApplicationsAsUser",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getInstalledApplicationsAsUser(
+        manager: PackageManager, flags: Int,
+        userId: Int
+    ): List<ApplicationInfo> {
+        return getInstalledApplications(manager, flags);
+    }
+
+    @JvmStatic
+    @PrivacyMethodReplace(
+        oriClass = PackageManager::class,
+        oriMethod = "getInstalledApplications",
+        oriAccess = AsmMethodOpcodes.INVOKEVIRTUAL
+    )
+    fun getInstalledApplications(manager: PackageManager, flags: Int): List<ApplicationInfo> {
+        logD("安装包-getInstalledApplications")
+        if (!checkAgreePrivacy("getInstalledApplications")) {
+            return emptyList()
+        }
+        return manager.getInstalledApplications(flags)
+    }
 
     private fun logI(log: String) {
         Log.i(TAG, log)

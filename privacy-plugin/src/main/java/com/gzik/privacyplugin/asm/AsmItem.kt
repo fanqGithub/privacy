@@ -35,7 +35,7 @@ class AsmItem(
                 oriClass = sourceName.substring(1, sourceName.length - 1)
             } else if (key == "oriAccess") {
                 oriAccess = value as Int
-            } else if (key === "oriMethod") {
+            } else if (key == "oriMethod") {
                 oriMethod = value as String?
             }
         }
