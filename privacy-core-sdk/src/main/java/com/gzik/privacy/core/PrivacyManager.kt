@@ -411,7 +411,7 @@ object PrivacyManager {
             logD("NetworkInterface-getHardwareAddress not agree privacy")
             return ByteArray(1)
         }
-        val value = manager.hardwareAddress.toString().toByteArray()
+        val value = manager.hardwareAddress
         return putCache(key, value)
     }
 
