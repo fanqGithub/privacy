@@ -23,6 +23,7 @@ import android.provider.Settings
 import android.telephony.CellInfo
 import android.telephony.TelephonyManager
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.Keep
 import androidx.annotation.RequiresApi
 import com.gzik.privacy.core.annotation.AsmMethodOpcodes
@@ -350,6 +351,8 @@ object PrivacyManager {
         if (!checkAgreePrivacy(key)) {
             return ""
         }
+        val stack=Log.getStackTraceString(Throwable())
+        Log.d("PrivacyManager", "getMacAddress: stack=$stack")
         val value = manager.macAddress
         return putCache(key, value)
     }
@@ -411,6 +414,8 @@ object PrivacyManager {
             logD("NetworkInterface-getHardwareAddress not agree privacy")
             return ByteArray(1)
         }
+        val stack=Log.getStackTraceString(Throwable())
+        Log.d("PrivacyManager", "getHardwareAddress: stack=$stack")
         val value = manager.hardwareAddress
         return putCache(key, value)
     }
